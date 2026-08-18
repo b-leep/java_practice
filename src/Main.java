@@ -64,3 +64,44 @@ class TaskList {
     }
 }
 
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        TaskList taskList = new TaskList();
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\n1. Add Task  2. View Tasks  3. Update Task  4. Delete Task  5. Exit");
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            if (choice == 1) {
+                System.out.print("Task name: ");
+                String name = sc.nextLine();
+                System.out.print("Location: ");
+                String location = sc.nextLine();
+                taskList.addTask(new Task(name, location));
+                System.out.println("Added.");
+            } else if (choice == 2) {
+                taskList.printAllTasks();
+            } else if (choice == 3) {
+                System.out.print("Task name to update: ");
+                String name = sc.nextLine();
+                System.out.print("New location: ");
+                String newLocation = sc.nextLine();
+                taskList.updateTask(name, newLocation);
+            } else if (choice == 4) {
+                System.out.print("Task name to delete: ");
+                String name = sc.nextLine();
+                taskList.deleteTask(name);
+            } else if (choice == 5) {
+                running = false;
+            } else {
+                System.out.println("Invalid choice.");
+            }
+        }
+
+        System.out.println("Goodbye!");
+    }
+}
+
